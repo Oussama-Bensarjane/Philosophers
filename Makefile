@@ -6,7 +6,7 @@ INCLUDE = include/philo.h
 
 OBJ = $(SRC:.c=.o) 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror fsanitize=address
 
 CC = cc
 
@@ -20,8 +20,8 @@ all: $(NAME)
 clean:
 	rm -rf $(OBJ)
 fclean: clean
-	rm -rm $(NAME
-	)
+	rm -rm $(NAME)
+
 re: fclean all
 
 .PHONY: clean
