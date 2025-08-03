@@ -6,23 +6,20 @@ static int	check_usage(char *arg)
 	int		len;
 
 	ptr = arg;
+	while (*ptr == '0')
+		ptr++;
 	len = ft_strlen(ptr);
+	if (len > 10 || (len == 10 && ft_strcmp(ptr, "2147483647") > 0))
+		return (print_error_usage(USAGE, 2), 1);
 	while (*ptr)
 	{
-		while (*ptr == '0')
-			ptr++;
-		if (!ft_isdigit(*ptr) || len > 10)
-		{
-			printf("len-->[%d]\n", len);
-			printf("arg-->[%s]\n", arg);
+		if (!ft_isdigit(*ptr))
 			return (print_error_usage(USAGE, 2), 1);
-		}
-		if (ptr + 1)
-			ptr++;
+		ptr++;
 	}
 	return (0);
 }
-//2147483647
+
 int	parser(int ac, char **av)
 {
 	int i;

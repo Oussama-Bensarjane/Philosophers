@@ -22,8 +22,8 @@ all: $(NAME)
 clean:
 	rm -rf $(OBJ)
 fclean: clean
-	rm -rm $(NAME)
-
+	rm -rf $(NAME)
+	
 re: fclean all
 
 .PHONY: clean
