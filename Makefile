@@ -1,16 +1,18 @@
 NAME = philo
 
-SRC = src/main.c 
-
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 INCLUDE = include/philo.h
+CC = cc
 
 OBJ = $(SRC:.c=.o) 
 
-CFLAGS = -Wall -Wextra -Werror fsanitize=address
-
-CC = cc
+SRC = src/main.c \
+	src/parser.c \
+	src/utils.c \
+	src/error.c \
 
 $(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
