@@ -37,13 +37,13 @@ typedef struct s_philo
 
 struct s_data
 {
-	int philos_number;
-	int	time_to_eat;
-	int time_to_die;
-	int time_to_sleep;
-	int nmr_limit_meals;// [7] | flag
-	int	start_simulation;
-	int	end_simulation;//when a philo dies or all full
+	int		philos_number;
+	int		time_to_eat;
+	int		time_to_die;
+	int		time_to_sleep;
+	int		nmr_limit_meals;// [7] | flag
+	int		start_simulation;
+	int		end_simulation;//when a philo dies or all full
 	t_fork	*fork;//array of forks
 	t_philo	*philos;//array of philo
 };
