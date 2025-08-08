@@ -1,13 +1,19 @@
 #ifndef PHILO_H
 #define PHILO_H
 
-# define USAGE "Usage: (ONLY POSITIVE INTEGERS!)\n./philo nbr_of_philos time_to_die time_to_eat time_to_sleep [nbr_of_times_each_philos_must_eat]\n"
+# define USAGE "Usage: (ONLY POSITIVE INTEGERS!)\n\
+				./philo nbr_of_philos time_to_die time_to_eat \
+				time_to_sleep [nbr_of_times_each_philos_must_eat]\n"
 
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include "colors.h"
+
+/* Stuctures */
 
 typedef pthread_mutex_t t_mtx;
+typedef struct s_data t_data;
 
 typedef struct s_fork
 {
@@ -26,16 +32,23 @@ typedef struct s_philo
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	pthread_t	thread_id;// each philo is a thread
+	t_data		*data;
 }	t_philo;
 
-typedef struct s_data
+struct s_data
 {
 	int philos_number;
 	int	time_to_eat;
 	int time_to_die;
 	int time_to_sleep;
 	int nmr_limit_meals;// [7] | flag
-}	t_data;
+	int	start_simulation;
+	int	end_simulation;//when a philo dies or all full
+	t_fork	*fork;//array of forks
+	t_philo	*philos;//array of philo
+};
+
+/* Functions declarations */
 
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
