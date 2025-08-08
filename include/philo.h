@@ -5,6 +5,37 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <pthread.h>
+
+typedef pthread_mutex_t t_mtx;
+
+typedef struct s_fork
+{
+	t_mtx	fork;
+	int		fork_id;
+}	t_fork;
+/*
+** ./philo 5 600 500 40 [7]
+*/
+
+typedef struct s_philo
+{
+	int			id;
+	int			last_meal_time;//the time pqssed from last meal
+	int			meals_counter;
+	t_fork		*left_fork;
+	t_fork		*right_fork;
+	pthread_t	thread_id;// each philo is a thread
+}	t_philo;
+
+typedef struct s_data
+{
+	int philos_number;
+	int	time_to_eat;
+	int time_to_die;
+	int time_to_sleep;
+	int nmr_limit_meals;// [7] | flag
+}	t_data;
 
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
