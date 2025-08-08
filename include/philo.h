@@ -1,9 +1,9 @@
 #ifndef PHILO_H
 #define PHILO_H
 
-# define USAGE "Usage: (ONLY POSITIVE INTEGERS!)\n\
-				./philo nbr_of_philos time_to_die time_to_eat \
-				time_to_sleep [nbr_of_times_each_philos_must_eat]\n"
+# define INPUT "Wrong input\n"
+# define USAGE0 "Usage: (ONLY POSITIVE INTEGERS!)\n"
+# define USAGE1 "./philo nbr_of_philos time_to_die time_to_eat time_to_sleep [nbr_of_times_each_philos_must_eat]\n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -48,11 +48,11 @@ struct s_data
 	t_philo	*philos;//array of philo
 };
 
-/* Functions declarations */
+/* Prototypes */
 
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
-void    print_error_usage(char *msg, int fd);
+void    print_error_usage(char *msg);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

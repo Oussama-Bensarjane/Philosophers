@@ -1,6 +1,6 @@
 #include "../include/philo.h"
 
-void    print_error_usage(char *msg, int fd)
+void    print_error_usage(char *msg)
 {
-    ft_putstr_fd(msg, fd);
+    ft_putstr_fd(msg, 2);
 }

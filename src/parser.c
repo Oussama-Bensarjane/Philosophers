@@ -10,11 +10,11 @@ static int	check_usage(char *arg)
 		ptr++;
 	len = ft_strlen(ptr);
 	if (len > 10 || (len == 10 && ft_strcmp(ptr, "2147483647") > 0))
-		return (print_error_usage(USAGE, 2), 1);
+		return (print_error_usage(RED INPUT RST GREEN USAGE0 RST USAGE1), 1);
 	while (*ptr)
 	{
 		if (!ft_isdigit(*ptr))
-			return (print_error_usage(USAGE, 2), 1);
+			return (print_error_usage(RED INPUT RST GREEN USAGE0 RST USAGE1), 1);
 		ptr++;
 	}
 	return (0);
@@ -25,7 +25,7 @@ int	parser(int ac, char **av)
 	int i;
 
 	if (ac != 5 && ac != 6)
-		return (print_error_usage(USAGE, 2), 1);
+		return (print_error_usage(RED INPUT RST GREEN USAGE0 RST USAGE1), 1);
 	i = 1;
 	while (i < ac && av[i])
 	{
