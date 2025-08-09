@@ -6,7 +6,7 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:13 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/09 08:59:22 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/09 18:19:38 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,34 @@ int	ft_strcmp(char *s1, char *s2)
 		((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
 		i++;
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+}
+
+int	mutex_handler(t_mtx *mutex, t_num_mtx num_mtx)
+{
+	int	ret;
+
+	ret = 0;
+	if (num_mtx == INIT)
+		ret = pthread_mutex_init(mutex, NULL);
+	else if (num_mtx == LOCK)
+		ret = pthread_mutex_lock(mutex);
+	else if (num_mtx == UNLOCK)
+		ret = pthread_mutex_unlock(mutex);
+	else if (num_mtx == DESTROY)
+		ret = pthread_mutex_destroy(mutex);
+	return (ret);
+}
+
+int	thread_handler(pthread_t *thread, void *(*routine)(void *), void *data, t_num_thread num_thread)
+{
+	int	ret;
+
+	ret = 0;
+	if (num_thread == CREATE)
+		ret = pthread_create(thread, NULL, routine, data);
+	else if (num_thread == JOIN)
+		ret = pthread_join(thread, NULL);
+	else if (num_thread == DETACH)
+		ret = pthread_detach(thread);
+	return (ret);
 }

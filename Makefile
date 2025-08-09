@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 INCLUDE = include/philo.h
 CC = cc
 
@@ -10,6 +10,7 @@ SRC = src/main.c \
 	src/parser.c \
 	src/utils.c \
 	src/error.c \
+	src/init.c \
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

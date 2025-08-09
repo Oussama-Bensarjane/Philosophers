@@ -6,7 +6,7 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:19 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/09 11:41:48 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/09 13:07:17 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(int ac, char **av)
 	if (parser(ac, av))
 		return (1);
 	if (init(av, &data))
-		return (print_error(RED INIT RST), 1);
+		return (1);
 	return (0);
 }

@@ -6,21 +6,22 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:23 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/09 11:38:34 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:59:59 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# define INPUT "Wrong Or Incomplete Input \n"
-# define USAGE0 "Usage: (ONLY POSITIVE INTEGERS!)\n"
+# define INPUT "Wrong or Incomplete Input \n"
+# define USAGE0 "Usage:         (ONLY POSITIVE INTEGERS ALLOWED!)\n"
 # define USAGE1 "./philo nbr_of_philos time_to_die time_to_eat time_to_sleep \
 [nbr_of_times_each_philos_must_eat]\n"
 # define EXMPL "For Example : ----> ./philo 5 80 100 40 [7]\n"
 # define PHILO "Number of Philos should be at least 1 \n"
-
-# define INIT "Failed to initiat \n"
+# define INIT_ERR "Failed to initiate \n"
+# define TIME_STAMP "Timestampes must at least 60ms or above !\n"
+# define MALLOC "Malloc failed\n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -40,6 +41,22 @@ typedef struct s_fork
 /*
 ** ./philo 5 600 500 40 [7]
 */
+
+typedef enum s_num_mtx
+{
+	INIT,
+	LOCK,
+	UNLOCK,
+	CREATE,
+	DESTROY
+}	t_num_mtx;
+
+typedef enum s_num_thread
+{
+	CREATE,
+	JOIN,
+	DETACH
+}	t_num_thread;
 
 typedef struct s_philo
 {
@@ -69,9 +86,12 @@ struct s_data
 
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
+int		init(char **av, t_data *data);
 void	print_error(char *msg);
 
 void	ft_putchar_fd(char c, int fd);
+int		thread_handler(t_mtx *mutex, t_num_mtx num_mtx);
+int		mutex_handler(t_mtx *mutex, t_num_mtx num_mtx);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_isdigit(int c);
 int		ft_strlen(char *str);
