@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/09 08:55:13 by obensarj          #+#    #+#             */
+/*   Updated: 2025/08/09 08:59:22 by obensarj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 void	ft_putchar_fd(char c, int fd)
@@ -15,7 +27,7 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(*s++, fd);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	long	nbr;
 	long	tmp;
@@ -65,7 +77,8 @@ int	ft_strcmp(char *s1, char *s2)
 	size_t	i;
 
 	i = 0;
-	while (s1[i] && s2[i] && ((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
+	while (s1[i] && s2[i] && \
+		((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
 		i++;
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }

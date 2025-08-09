@@ -1,9 +1,26 @@
-#ifndef PHILO_H
-#define PHILO_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/09 08:55:23 by obensarj          #+#    #+#             */
+/*   Updated: 2025/08/09 11:38:34 by obensarj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# define INPUT "Wrong input\n"
+#ifndef PHILO_H
+# define PHILO_H
+
+# define INPUT "Wrong Or Incomplete Input \n"
 # define USAGE0 "Usage: (ONLY POSITIVE INTEGERS!)\n"
-# define USAGE1 "./philo nbr_of_philos time_to_die time_to_eat time_to_sleep [nbr_of_times_each_philos_must_eat]\n"
+# define USAGE1 "./philo nbr_of_philos time_to_die time_to_eat time_to_sleep \
+[nbr_of_times_each_philos_must_eat]\n"
+# define EXMPL "For Example : ----> ./philo 5 80 100 40 [7]\n"
+# define PHILO "Number of Philos should be at least 1 \n"
+
+# define INIT "Failed to initiat \n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -12,8 +29,8 @@
 
 /* Stuctures */
 
-typedef pthread_mutex_t t_mtx;
-typedef struct s_data t_data;
+typedef pthread_mutex_t	t_mtx;
+typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
@@ -52,13 +69,13 @@ struct s_data
 
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
-void    print_error_usage(char *msg);
+void	print_error(char *msg);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-int     ft_isdigit(int c);
-int	    ft_strlen(char *str);
-int     ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_strlen(char *str);
+int		ft_atoi(char *str);
 int		ft_strcmp(char *s1, char *s2);
 
 #endif
