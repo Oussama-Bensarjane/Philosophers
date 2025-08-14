@@ -1,0 +1,28 @@
+#include "../include/philo.h"
+
+/**
+ * [timestamp] [philo id] [message]
+ * 
+ * thread safe --> t_mtx msg_mutex , message mutex
+ */
+
+void	message_status(t_philo *philo, t_philo_status status)
+{
+	long	passed_time;
+
+	if (philo->full)
+		return ;
+	passed_time = gettime(MILISEC) - philo->data->start_simulation;
+	mutex_handler(&philo->data->msg_mutex, LOCK);
+	if (status == TAKE_FORK && !simulation_finished(philo->data))
+		printf("%-4ld %d has taken a fork\n", passed_time, philo->id);
+	else if (status == EATING && !simulation_finished(philo->data))
+		printf("%-4ld %d is eating\n", passed_time, philo->id);
+	else if (status == SLEEPING && !simulation_finished(philo->data))
+		printf("%-4ld %d is sleeping\n", passed_time, philo->id);
+	else if (status == THINKING && !simulation_finished(philo->data))
+		printf("%-4ld %d is thinking\n", passed_time, philo->id);
+	else if (status == DIED)
+		printf("%-4ld %d died\n", passed_time, philo->id);
+	mutex_handler(&philo->data->msg_mutex, UNLOCK);
+}
