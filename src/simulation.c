@@ -23,6 +23,7 @@ static void	eat(t_philo *philo)
 {
 	mutex_handler(&philo->first_fork->fork, LOCK);
 	message_status(philo, TAKE_FORK);
+	_usleep(philo->data, 1000);
 	mutex_handler(&philo->second_fork->fork, LOCK);
 	message_status(philo, TAKE_FORK);
 
@@ -103,9 +104,13 @@ int	simulation(t_data *data)
 {
 	int i;
 
+	pthread_t monitor;
+
+	if (thread_handler(&monitor, monitor_routine, data, CREATE))
+    	return (1);
 	if (data->nmr_limit_meals == 0)
 		return (0);// return and clean
-	else if (data->philos_number == 1)
+	if (data->philos_number == 1)
 		return (one_philo_case(data));
 	else
 	{
@@ -123,5 +128,6 @@ int	simulation(t_data *data)
 	i = -1;
 	while (++i < data->philos_number)
 		thread_handler(&data->philos[i].thread_id, NULL, NULL, JOIN);
+	thread_handler(&monitor, NULL, NULL, JOIN);
 	return (0);
 }

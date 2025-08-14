@@ -120,6 +120,7 @@ void	wait_all_threads(t_data *data);
 int		_usleep(t_data *data, int usec);
 long	gettime(t_time_code time_code);
 void	message_status(t_philo *philo, t_philo_status status);
+void	*monitor_routine(void *arg);
 
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);

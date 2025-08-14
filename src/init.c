@@ -82,10 +82,10 @@ static int set_ups(t_data *data)
 int	init(char **av, t_data *data)
 {
 	data->philos_number = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]) * 1e3;
-	data->time_to_eat = ft_atoi(av[3]) * 1e3;
-	data->time_to_sleep = ft_atoi(av[4]) * 1e3;
-	if (data->time_to_die < 6e4 || data->time_to_eat < 6e4 || data->time_to_sleep < 6e4)
+	data->time_to_die = ft_atoi(av[2]) * 1000;
+	data->time_to_eat = ft_atoi(av[3]) * 1000;
+	data->time_to_sleep = ft_atoi(av[4]) * 1000;
+	if (data->time_to_die < 60000 || data->time_to_eat < 60000 || data->time_to_sleep < 60000)
 		return (print_error(RED INIT_ERR RST YELLOW TIME_STAMP RST USAGE1), 1);
 	if (av[5])
 		data->nmr_limit_meals = ft_atoi(av[5]);

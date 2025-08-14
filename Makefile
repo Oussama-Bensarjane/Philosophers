@@ -15,6 +15,7 @@ SRC = src/main.c \
 	src/get_and_set.c \
 	src/utils_simulation.c \
 	src/message.c \
+	src/monitor.c \
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
