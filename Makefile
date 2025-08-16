@@ -1,7 +1,7 @@
 NAME = philo
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
-INCLUDE = include/philo.h
+INCLUDE = include/philo.h include/colors.h include/struct.h
 CC = cc
 
 OBJ = $(SRC:.c=.o) 

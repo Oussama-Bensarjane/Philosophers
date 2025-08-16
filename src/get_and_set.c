@@ -17,16 +17,16 @@
  * basicly avoid writing to LOCK and UNLOCK  
 */
 
-void    set_val(t_mtx *mutex, int *dest, int value)
+void    set_val(t_mtx *mutex, long *dest, long value)
 {
 	mutex_handler(mutex, LOCK);
 	*dest = value;
 	mutex_handler(mutex, UNLOCK);
 }
 
-int    get_val(t_mtx *mutex, int *value)
+long    get_val(t_mtx *mutex, long *value)
 {
-	int ret;
+	long ret;
 
 	mutex_handler(mutex, LOCK);
 	ret = *value;

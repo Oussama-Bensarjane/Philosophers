@@ -12,24 +12,23 @@
 
 #include "../include/philo.h"
 
-static void	assign_forks(t_philo *philo, t_fork *forks, int philo_pos)
+static void	assign_forks(t_philo *philo, t_fork *forks)
 {
-	int	philo_number;
-	int	left_id;
-	int	right_id;
+	int left;
+	int right;
 
-	philo_number = philo->data->philos_number;
-	left_id = philo_pos;
-	right_id = (philo_pos + 1) % philo_number;
-	if (left_id < right_id)
+	left = philo->id;										// left fork index
+	right = (philo->id + 1) % philo->data->philos_number; // right fork index
+	// letting odd philosophers pick right first, even pick left first
+	if (philo->id % 2)
 	{
-		philo->first_fork = &forks[left_id];
-		philo->second_fork = &forks[right_id];
+		philo->first_fork = &forks[right];
+		philo->second_fork = &forks[left];
 	}
 	else
 	{
-		philo->first_fork = &forks[right_id];
-		philo->second_fork = &forks[left_id];
+		philo->first_fork = &forks[left];
+		philo->second_fork = &forks[right];
 	}
 }
 
@@ -75,7 +74,7 @@ static int set_ups(t_data *data)
 		philo->meals_counter = 0;
 		philo->data = data;
 		mutex_handler(&philo->philo_mutex, INIT);
-		assign_forks(philo, data->forks, i);
+		assign_forks(philo, data->forks);
 	}
 	return (0);
 }

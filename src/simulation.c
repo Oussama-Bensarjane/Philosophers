@@ -23,7 +23,6 @@ static void	eat(t_philo *philo)
 {
 	mutex_handler(&philo->first_fork->fork, LOCK);
 	message_status(philo, TAKE_FORK);
-	_usleep(philo->data, 1000);
 	mutex_handler(&philo->second_fork->fork, LOCK);
 	message_status(philo, TAKE_FORK);
 
@@ -57,7 +56,6 @@ void	*thread_routine(void *arg)
 	set_val(&philo->philo_mutex, &philo->last_meal_time, gettime(MILISEC));
 	// increment the a var in data to synch with the monitor with each philo
 	increment_synch_var(&philo->data->data_mutex, &philo->data->philos_running_nbr);
-
 	while (!simulation_finished(philo->data))
 	{
 		if (philo->full)//TODO thread handle

@@ -94,7 +94,7 @@ int	_usleep(t_data *data, int usec)
 	{
 		if (simulation_finished(data))
 			break ;
-		usleep(500);// sleep in very small chunks (0.5 ms)
+		usleep(50);// sleep in very small chunks (0.5 ms)
 	}
 	return (0);
 }
