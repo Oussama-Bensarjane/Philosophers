@@ -53,6 +53,7 @@ static int set_ups(t_data *data)
 
 	data->end_simulation = 0;
 	data->all_thread_ready = 0;
+	data->philos_running_nbr = 0;
 	data->philos = safe_malloc(sizeof(t_philo) * data->philos_number);
 	data->forks = safe_malloc(sizeof(t_fork) * data->philos_number);
 	if (!data->forks || !data->philos)

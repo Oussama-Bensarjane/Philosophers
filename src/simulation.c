@@ -45,16 +45,19 @@ static void	thinking(t_philo *philo)
 {
 	message_status(philo, THINKING);
 }
-void	*thread_routine(void *data)
+
+void	*thread_routine(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)data;
+	philo = (t_philo *)arg;
 	// SpinLock
-	
 	wait_all_threads(philo->data);
-	
-	//set last meal time
+	// set last meal time
+	set_val(&philo->philo_mutex, &philo->last_meal_time, gettime(MILISEC));
+	// increment the a var in data to synch with the monitor with each philo
+	increment_synch_var(&philo->data->data_mutex, &philo->data->philos_running_nbr);
+
 	while (!simulation_finished(philo->data))
 	{
 		if (philo->full)//TODO thread handle
@@ -84,11 +87,14 @@ void	*thread_routine(void *data)
 
 void *one_philo_routine(void *arg)
 {
-    t_philo *p = arg;
-    // wait_all_threads(p->data);
-    message_status(p, TAKE_FORK);
-    _usleep(p->data, p->data->time_to_die); // can’t eat; will “die”
-    return NULL;
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+    wait_all_threads(philo->data);
+    message_status(philo, TAKE_FORK);
+	_usleep(philo->data, philo->data->time_to_die);
+    message_status(philo, DIED);
+	return (NULL);
 }
 
 int one_philo_case(t_data *data)
@@ -104,22 +110,19 @@ int	simulation(t_data *data)
 {
 	int i;
 
-	pthread_t monitor;
-
-	if (thread_handler(&monitor, monitor_routine, data, CREATE))
-    	return (1);
 	if (data->nmr_limit_meals == 0)
 		return (0);// return and clean
 	if (data->philos_number == 1)
 		return (one_philo_case(data));
 	else
 	{
-
 		i = -1;
 		while (++i < data->philos_number)
 			thread_handler(&data->philos[i].thread_id, thread_routine, &data->philos[i], CREATE);
 	
 	}
+	if (thread_handler(&data->monitor, monitor_routine, data, CREATE))
+    	return (1);
 	// Start of the simulation
 	data->start_simulation = gettime(MILISEC);
 	// 1) Now all threads are ready!
@@ -128,6 +131,6 @@ int	simulation(t_data *data)
 	i = -1;
 	while (++i < data->philos_number)
 		thread_handler(&data->philos[i].thread_id, NULL, NULL, JOIN);
-	thread_handler(&monitor, NULL, NULL, JOIN);
+	thread_handler(&data->monitor, NULL, NULL, JOIN);
 	return (0);
 }

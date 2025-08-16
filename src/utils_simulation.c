@@ -22,3 +22,27 @@ void	wait_all_threads(t_data *data)
 	while (!(get_val(&data->data_mutex, &data->all_thread_ready)))
 		;
 }
+
+/**
+ * monitor busy waitttt untill all philo are running
+ */
+int	all_philo_running(t_mtx *mutex, int *philos, int philo_nbr)
+{
+	int	ret;
+
+	ret = 0;
+	mutex_handler(mutex, LOCK);
+	if (*philos == philo_nbr)
+		ret = 1;
+	mutex_handler(mutex, UNLOCK);
+	return (ret);
+}
+/**
+ * increment running philo to synch with the monitor
+ */
+void	increment_synch_var(t_mtx *mutex, int *value)
+{
+	mutex_handler(mutex, LOCK);
+	(*value)++;
+	mutex_handler(mutex, UNLOCK);
+}

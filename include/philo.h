@@ -89,18 +89,20 @@ typedef struct s_philo
 
 struct s_data
 {
-	int		philos_number;
-	long	time_to_eat;
-	long	time_to_die;
-	long	time_to_sleep;
-	int		nmr_limit_meals;// [7] | flag
-	long	start_simulation;
-	int		all_thread_ready;//thread synchnonisation
-	int		end_simulation;//when a philo dies or all full
-	t_mtx	data_mutex;//protection from races while rading from data
-	t_mtx	msg_mutex;//protection when writing in message
-	t_fork	*forks;//array of forks
-	t_philo	*philos;//array of philo
+	int			philos_number;
+	long		time_to_eat;
+	long		time_to_die;
+	long		time_to_sleep;
+	int			nmr_limit_meals;// [7] | flag
+	long		start_simulation;
+	int			all_thread_ready;//thread synchnonisation
+	int			end_simulation;//when a philo dies or all full
+	int			philos_running_nbr;// this var for the monitor purpuse
+	pthread_t	monitor;
+	t_mtx		data_mutex;//protection from races while rading from data
+	t_mtx		msg_mutex;//protection when writing in message
+	t_fork		*forks;//array of forks
+	t_philo		*philos;//array of philo
 };
 
 /* Prototypes */
@@ -121,6 +123,8 @@ int		_usleep(t_data *data, int usec);
 long	gettime(t_time_code time_code);
 void	message_status(t_philo *philo, t_philo_status status);
 void	*monitor_routine(void *arg);
+void	increment_synch_var(t_mtx *mutex, int *value);
+int		all_philo_running(t_mtx *mutex, int *philos, int philo_nbr);
 
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
