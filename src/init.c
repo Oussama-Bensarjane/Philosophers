@@ -19,7 +19,9 @@ static void	assign_forks(t_philo *philo, t_fork *forks)
 
 	left = philo->id;										// left fork index
 	right = (philo->id + 1) % philo->data->philos_number; // right fork index
-	// letting odd philosophers pick right first, even pick left first
+	/*
+	 * letting odd philosophers pick right first, even pick left first.
+	*/
 	if (philo->id % 2)
 	{
 		philo->first_fork = &forks[right];
@@ -72,6 +74,7 @@ static int set_ups(t_data *data)
 		philo->id = i + 1;
 		philo->full = 0;
 		philo->meals_counter = 0;
+		philo->thread_id = 0;
 		philo->data = data;
 		mutex_handler(&philo->philo_mutex, INIT);
 		assign_forks(philo, data->forks);

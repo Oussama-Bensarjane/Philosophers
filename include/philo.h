@@ -36,14 +36,15 @@
 int		main(int ac, char **av);
 int		parser(int ac, char **av);
 int		init(char **av, t_data *data);
+int		simulation(t_data *data);
 void	print_error(char *msg);
+void	cleanup(t_data *data);
 
 int		thread_handler(pthread_t *thread, void *(*thread_routine)(void *), void *data, t_thread_code num_thread);
 int		mutex_handler(t_mtx *mutex, t_mtx_code num_mtx);
 void    set_val(t_mtx *mutex, long *dest, long value);
 long	get_val(t_mtx *mutex, long *value);
 int		simulation_finished(t_data *data);
-int		simulation(t_data *data);
 void	wait_all_threads(t_data *data);
 int		_usleep(t_data *data, int usec);
 long	gettime(t_time_code time_code);

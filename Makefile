@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address
 INCLUDE = include/philo.h include/colors.h include/struct.h
 CC = cc
 
@@ -16,6 +16,7 @@ SRC = src/main.c \
 	src/utils_simulation.c \
 	src/message.c \
 	src/monitor.c \
+	src/cleanup.c \
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

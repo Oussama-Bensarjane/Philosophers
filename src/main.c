@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	if (parser(ac, av))
 		return (1);
 	if (init(av, &data))
-		return (1);
+		return (cleanup(&data), 1);
 	simulation(&data);
+	cleanup(&data);
 	return (0);
 }
