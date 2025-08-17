@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   message.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/17 10:22:06 by obensarj          #+#    #+#             */
+/*   Updated: 2025/08/17 12:44:07 by obensarj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 /**
@@ -26,6 +38,8 @@ void	message_status(t_philo *philo, t_philo_status status)
 	else if (status == THINKING && !simulation_finished(philo->data))
 		printf("%-4ld %ld is thinking\n", passed_time, philo->id + 1);
 	else if (status == DIED)
+		printf("%-4ld %ld died\n", --passed_time, philo->id + 1);
+	else if (status == DIED1)
 		printf("%-4ld %ld died\n", passed_time, philo->id + 1);
 	mutex_handler(&philo->data->msg_mutex, UNLOCK);
 }

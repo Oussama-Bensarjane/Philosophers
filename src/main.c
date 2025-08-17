@@ -6,7 +6,7 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:19 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/17 07:53:59 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/17 10:58:58 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@ void f(void)
 {
 	system("leaks philo");
 }
+
 int	main(int ac, char **av)
 {
-	atexit(f);
+	// atexit(f);
 	t_data	data;
  
 	if (parser(ac, av))

@@ -17,6 +17,8 @@ SRC = src/main.c \
 	src/message.c \
 	src/monitor.c \
 	src/cleanup.c \
+	src/routine.c \
+	src/time.c \
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

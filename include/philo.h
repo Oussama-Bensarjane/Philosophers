@@ -6,7 +6,7 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:23 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/11 18:16:58 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:03:37 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ int		_usleep(t_data *data, int usec);
 long	gettime(t_time_code time_code);
 void	message_status(t_philo *philo, t_philo_status status);
 void	*monitor_routine(void *arg);
+void	*thread_routine(void *arg);
 void	increment_synch_var(t_mtx *mutex, long *value);
 int		all_philo_running(t_mtx *mutex, long *philos, long philo_nbr);
 
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
 int		ft_isdigit(int c);
 int		ft_strlen(char *str);
 int		ft_atoi(char *str);

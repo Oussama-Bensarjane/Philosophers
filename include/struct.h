@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/17 13:49:40 by obensarj          #+#    #+#             */
+/*   Updated: 2025/08/17 13:49:41 by obensarj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* Stuctures */
 
 typedef pthread_mutex_t	t_mtx;
@@ -40,13 +52,14 @@ typedef enum s_status
 	SLEEPING,
 	THINKING,
 	DIED,
+	DIED1,
 	TAKE_FORK,
 }	t_philo_status;
 
 typedef struct s_philo
 {
 	long		id;
-	long		last_meal_time;//the time pqssed from last meal
+	long		last_meal_time;//the time passed from last meal
 	long		meals_counter;
 	long		full;
 	t_fork		*first_fork;

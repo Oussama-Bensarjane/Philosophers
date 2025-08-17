@@ -6,7 +6,7 @@
 /*   By: obensarj <obensarj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 08:55:21 by obensarj          #+#    #+#             */
-/*   Updated: 2025/08/09 11:37:43 by obensarj         ###   ########.fr       */
+/*   Updated: 2025/08/17 13:57:38 by obensarj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	print_error(char *msg)
 {
-	ft_putstr_fd(msg, 2);
+	write(2, msg, ft_strlen(msg));
 }
