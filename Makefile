@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-pthread #-fsanitize=address -g
 INCLUDE = include/philo.h include/colors.h include/struct.h
 CC = cc
 

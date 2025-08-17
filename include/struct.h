@@ -7,6 +7,7 @@ typedef struct s_fork
 {
 	t_mtx	fork;
 	int		fork_id;
+	int		initialized;
 }	t_fork;
 /*
 ** ./philo 5 600 500 300 [7]
