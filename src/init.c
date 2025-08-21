@@ -14,26 +14,17 @@
 
 static void	assign_forks(t_philo *philo, t_fork *forks)
 {
-	int left;
-	int right;
+	int philo_nbr;
 
-	left = philo->id;										// left fork index
-	right = (philo->id + 1) % philo->data->philos_number; // right fork index
-	/*
-	 * letting odd philosophers pick right first, even pick left first.
-	*/
+	philo_nbr = philo->data->philos_number;
+	philo->first_fork = &forks[(philo->id + 1) % philo_nbr];
+	philo->second_fork = &forks[philo->id];
 	if (philo->id % 2)
 	{
-		philo->first_fork = &forks[right];
-		philo->second_fork = &forks[left];
-	}
-	else
-	{
-		philo->first_fork = &forks[left];
-		philo->second_fork = &forks[right];
+		philo->first_fork = &forks[philo->id];
+		philo->second_fork = &forks[(philo->id + 1) % philo_nbr];
 	}
 }
-
 static void	*safe_malloc(int bytes)
 {
 	void	*ret;
@@ -107,7 +98,7 @@ int	init(char **av, t_data *data)
 		return (1);
 	if (mutex_handler(&data->msg_mutex, INIT))
 		return (1);
-	if (data->time_to_die < 6e4 || data->time_to_eat < 6e4 || data->time_to_sleep < 6e4)
+	if (ft_atoi(av[2]) < 60 || ft_atoi(av[3]) < 60 || ft_atoi(av[4]) < 60)
 		return (print_error(RED INIT_ERR RST YELLOW TIME_STAMP RST USAGE1), 1);
 	if (av[5])
 		data->nmr_limit_meals = ft_atoi(av[5]);

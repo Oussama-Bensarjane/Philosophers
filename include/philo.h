@@ -56,7 +56,7 @@ int		all_philo_running(t_mtx *mutex, long *philos, long philo_nbr);
 
 int		ft_isdigit(int c);
 int		ft_strlen(char *str);
-int		ft_atoi(char *str);
+long		ft_atoi(char *str);
 int		ft_strcmp(char *s1, char *s2);
 
 #endif

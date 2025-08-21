@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror #-pthread #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 INCLUDE = include/philo.h include/colors.h include/struct.h
 CC = cc
 
@@ -18,7 +18,7 @@ SRC = src/main.c \
 	src/monitor.c \
 	src/cleanup.c \
 	src/routine.c \
-	src/time.c \
+	src/time.c
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -29,9 +29,9 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ)
+	rm -f $(OBJ)
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 	
 re: fclean all
 

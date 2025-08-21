@@ -12,7 +12,7 @@
 
 #include "../include/philo.h"
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	long	nbr;
 	long	tmp;

@@ -44,6 +44,8 @@ static void	eat(t_philo *philo)
 static void	thinking(t_philo *philo)
 {
 	message_status(philo, THINKING);
+	// if (philo->data->time_to_die > (philo->data->time_to_eat + philo->data->time_to_sleep))
+	// 	_usleep(philo->data, (philo->data->time_to_die - (philo->data->time_to_eat + philo->data->time_to_sleep))/2);
 }
 
 void	*thread_routine(void *arg)

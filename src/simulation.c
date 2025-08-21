@@ -32,7 +32,7 @@ static void *one_philo_routine(void *arg)
     wait_all_threads(philo->data);
     message_status(philo, TAKE_FORK);
 	_usleep(philo->data, philo->data->time_to_die);
-    message_status(philo, DIED1);
+    message_status(philo, DIED);
 	return (NULL);
 }
 

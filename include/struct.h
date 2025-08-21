@@ -52,7 +52,6 @@ typedef enum s_status
 	SLEEPING,
 	THINKING,
 	DIED,
-	DIED1,
 	TAKE_FORK,
 }	t_philo_status;
 
